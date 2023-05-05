@@ -1,10 +1,14 @@
-﻿namespace Flashcards.Chad1082
+﻿using Flashcards.Chad1082.Data;
+
+namespace Flashcards.Chad1082
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Menu mainMenu = new Menu();
+
+            mainMenu.ShowMainMenu();
         }
     }
 }

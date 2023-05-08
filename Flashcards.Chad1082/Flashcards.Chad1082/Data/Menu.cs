@@ -21,29 +21,29 @@ namespace Flashcards.Chad1082.Data
         {
             Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
             Console.WriteLine("Please select an option below:");
-            Console.WriteLine("C - Manage Card Stacks");
-            Console.WriteLine("F - Manage Flashcards");
-            Console.WriteLine("M - Study");
-            Console.WriteLine("S - View Study Sessions");
-            Console.WriteLine("E - Exit");
+            Console.WriteLine("1 - Manage Card Stacks");
+            Console.WriteLine("2 - Manage Flashcards");
+            Console.WriteLine("3 - Study");
+            Console.WriteLine("4 - View Study Sessions");
+            Console.WriteLine("5 - Exit");
             Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
             string menuOption = Console.ReadLine().Trim().ToUpper();
             switch (menuOption)
             {
-                case "C":
+                case "1":
                     Console.Clear();
                     break;
-                case "F":
+                case "2":
                     Console.Clear();
                     break;
-                case "M":                    
+                case "3":                    
                     Console.Clear();
                     break;
-                case "S":                    
+                case "4":                    
                     Console.Clear();
                     break;
-                case "E":
+                case "5":
                     Environment.Exit(0);
                     break;
                 default:

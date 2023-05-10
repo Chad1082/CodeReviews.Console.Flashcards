@@ -1,56 +1,95 @@
-﻿using System;
+﻿using ConsoleTools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Flashcards.Chad1082.Data
 {
     internal class Menu
     {
+        internal static ConsoleMenu mainMenu = new ConsoleMenu();
+        internal static ConsoleMenu manageStacksMenu = new ConsoleMenu();
+        internal static ConsoleMenu manageFlashcardsMenu = new ConsoleMenu();
+        internal static ConsoleMenu studyMenu = new ConsoleMenu();
+        internal static ConsoleMenu sessionsMenu = new ConsoleMenu();
+
+        public Menu()
+        {
+            manageStacksMenu = new ConsoleMenu()
+                .Add("View Stacks", () => Console.WriteLine("Option 1"))
+                .Add("New Stack", () => Console.WriteLine("Option 2"))
+                .Add("Delete Stack", () => Console.WriteLine("Option 3"))
+                .Add("Return to Main Menu", ConsoleMenu.Close)
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.Title = "Manage Stacks";
+                    config.EnableBreadcrumb = true;
+                    config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+                });
+
+            manageFlashcardsMenu = new ConsoleMenu()
+                .Add("Select Stack", () => Console.WriteLine("Option 1"))
+                .Add("New Stack", () => Console.WriteLine("Option 2"))
+                .Add("Delete Stack", () => Console.WriteLine("Option 3"))
+                .Add("Return to Main Menu", ConsoleMenu.Close)
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.Title = "Manage Fashcards";
+                    config.EnableBreadcrumb = true;
+                    config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+                });
+
+            studyMenu = new ConsoleMenu()
+                .Add("Select Stack", () => Console.WriteLine("Option 1"))
+                .Add("New Stack", () => Console.WriteLine("Option 2"))
+                .Add("Delete Stack", () => Console.WriteLine("Option 3"))
+                .Add("Return to Main Menu", ConsoleMenu.Close)
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.Title = "Study";
+                    config.EnableBreadcrumb = true;
+                    config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+                });
+
+            sessionsMenu = new ConsoleMenu()
+                .Add("Select Stack", () => Console.WriteLine("Option 1"))
+                .Add("New Stack", () => Console.WriteLine("Option 2"))
+                .Add("Delete Stack", () => Console.WriteLine("Option 3"))
+                .Add("Return to Main Menu", ConsoleMenu.Close)
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.Title = "Previous Study Sessions";
+                    config.EnableBreadcrumb = true;
+                    config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+                });
+
+
+            mainMenu = new ConsoleMenu()
+                .Add("Manage Card Stacks", manageStacksMenu.Show)
+                .Add("Manage Flashcards", manageFlashcardsMenu.Show)
+                .Add("Study", studyMenu.Show)
+                .Add("View study sessions", sessionsMenu.Show)
+                .Add("Exit", () => Environment.Exit(0))
+                .Configure(config =>
+                {
+                    config.Selector = "--> ";
+                    config.Title = "Flashcards study session!";
+                    config.EnableWriteTitle = true;
+                    config.EnableBreadcrumb = true;
+                    config.WriteHeaderAction = () => Console.WriteLine("Pick an option:");
+                    config.WriteItemAction = item => Console.Write("[{0}] {1}", item.Index, item.Name);
+                });
+        }
         internal void ShowMainMenu()
         {
-            Console.WriteLine("Flashcards study session!");
-            do
-            {
-                MainMenu();
-            } while (true);
-        }
-
-        private void MainMenu()
-        {
-            Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-            Console.WriteLine("Please select an option below:");
-            Console.WriteLine("1 - Manage Card Stacks");
-            Console.WriteLine("2 - Manage Flashcards");
-            Console.WriteLine("3 - Study");
-            Console.WriteLine("4 - View Study Sessions");
-            Console.WriteLine("5 - Exit");
-            Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-
-            string menuOption = Console.ReadLine().Trim().ToUpper();
-            switch (menuOption)
-            {
-                case "1":
-                    Console.Clear();
-                    break;
-                case "2":
-                    Console.Clear();
-                    break;
-                case "3":                    
-                    Console.Clear();
-                    break;
-                case "4":                    
-                    Console.Clear();
-                    break;
-                case "5":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    Console.Clear();
-                    Console.WriteLine("Option not recognised");
-                    break;
-            }
+           mainMenu.Show();
         }
     }
 }

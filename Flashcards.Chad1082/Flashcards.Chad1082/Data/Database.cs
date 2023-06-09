@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using Flashcards.Chad1082.Folders;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -52,6 +53,8 @@ namespace Flashcards.Chad1082.Data
             {
                 Console.WriteLine("Failed to create database:");
                 Console.WriteLine(ex.ToString());
+                Console.WriteLine("Press enter to continue...");
+                Console.Read();
             }
             finally
             {
@@ -112,6 +115,8 @@ namespace Flashcards.Chad1082.Data
                 }
             }
         }
+
+        
     }
 
 }
